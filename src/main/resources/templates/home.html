@@ -57,7 +57,7 @@
       animation-name: spin;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
-      transform-origin: 651px 479px; /* center of fan */
+      transform-origin: 651px 479px;
     }
 
   </style>
@@ -208,11 +208,9 @@
   const fanSpeedValue = document.getElementById("fanSpeedValue");
   const fanGroup = document.getElementById("fan");
 
-  // Helper: Apply speed to fan
   function applyFanSpeed(speed) {
     fanSpeedValue.textContent = speed;
 
-    // Set spin
     fanGroup.classList.remove("spin");
     fanGroup.style.animationDuration = "";
 
@@ -221,7 +219,6 @@
       fanGroup.style.animationDuration = speed === 1 ? "1s" : "0.5s";
     }
 
-    // Send to backend
     fetch("/fan", {
       method: "POST",
       headers: {
@@ -231,21 +228,17 @@
     }).catch(err => console.error("Fan speed update error:", err));
   }
 
-  // Apply immediately when user slides
   fanSpeedInput.addEventListener("input", () => {
     const speed = parseInt(fanSpeedInput.value);
     applyFanSpeed(speed);
   });
 
-  // Set default display value
   fanSpeedValue.textContent = fanSpeedInput.value;
 
   // light
-
   const lightPath = document.getElementById("light");
   const lightSwitch = document.getElementById("lightSwitch");
 
-  // Set default to OFF (grey)
   lightPath.setAttribute("fill", "grey");
   lightSwitch.checked = false;
 
@@ -300,7 +293,6 @@
     }).catch(err => console.error("AC control error:", err));
   });
 
-  // 🧊 Set default UI state on page load
   updateACUI(acMode.value);
 
   const turnOffAllBtn = document.getElementById("turnOffAllBtn");
@@ -322,7 +314,6 @@
       })
       .catch(err => console.error("Failed to turn off all devices:", err));
   });
-
 
 </script>
 
