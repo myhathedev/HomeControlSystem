@@ -1,14 +1,12 @@
-# Use a lightweight JDK image
-FROM eclipse-temurin:21-jdk-alpine
-
-# Create app directory
+# -------- Stage 1: Build --------
+FROM gradle:8.5-jdk21 AS builder
 WORKDIR /app
+COPY . .
+RUN gradle bootJar --no-daemon
 
-# Copy the built JAR into the container
-COPY build/libs/*.jar app.jar
-
-# Expose the port your app runs on
+# -------- Stage 2: Run --------
+FROM eclipse-temurin:21-jdk-alpine
+WORKDIR /app
+COPY --from=builder /app/build/libs/*.jar app.jar
 EXPOSE 8080
-
-# Run the Spring Boot app
 ENTRYPOINT ["java", "-jar", "app.jar"]
