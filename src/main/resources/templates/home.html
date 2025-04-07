@@ -28,6 +28,7 @@
     form {
       margin: 10px 0;
     }
+
     button {
       margin-top: 5px;
       padding: 6px 12px;
@@ -63,56 +64,75 @@
   </style>
 </head>
 <body>
-<div class="d-flex gap-5 flex-wrap justify-content-center">
-  <div>
-    <section class="container py-5" th:width="400">
+<div class="d-flex gap-5 justify-content-center">
+    <section class="py-5" style="width: 400px;">
       <h1 class="text-center mb-5">Smart Home Control System</h1>
 
       <!-- Light Control -->
-      <div class="mb-4 pb-3 border-bottom">
-        <h4 class="mb-3">Light Control</h4>
-        <form id="lightForm">
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="lightSwitch" name="light">
-            <label class="form-check-label" for="lightSwitch">Toggle Light</label>
-          </div>
-        </form>
-      </div>
+      <fieldset class="mb-4 pb-3 border-bottom">
+        <legend class="h4 mb-3">Light Control</legend>
+        <div class="form-check form-switch">
+          <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="lightSwitch"
+                  name="light"
+                  aria-checked="false"
+          />
+          <label class="form-check-label" for="lightSwitch">Toggle Light</label>
+        </div>
+      </fieldset>
 
       <!-- Fan Control -->
-      <div class="mb-4 pb-3 border-bottom">
-        <h4 class="mb-3">Fan Control</h4>
+      <fieldset class="mb-4 pb-3 border-bottom">
+        <legend class="h4 mb-3">Fan Control</legend>
         <label for="fanSpeed" class="form-label d-flex justify-content-between">
           <span>Fan Speed</span>
-          <span id="fanSpeedValue" class="fw-bold">0</span>
+          <span id="fanSpeedValue" class="fw-bold" aria-live="polite">0</span>
         </label>
-        <input type="range" class="form-range" min="0" max="2" step="1" id="fanSpeed" name="speed" value="0">
-      </div>
+        <input
+                type="range"
+                class="form-range"
+                min="0"
+                max="2"
+                step="1"
+                value="0"
+                id="fanSpeed"
+                name="speed"
+                aria-valuemin="0"
+                aria-valuemax="2"
+                aria-valuenow="0"
+                aria-describedby="fanSpeedValue"
+        />
+      </fieldset>
 
       <!-- Air Conditioner Control -->
-      <div class="mb-4 pb-3 border-bottom">
-        <h4 class="mb-3">Air Conditioner Control</h4>
-        <div class="d-flex align-items-center gap-3">
-          <select id="acMode" name="mode" class="form-select w-auto">
-            <option value="cool">Cool</option>
-            <option value="heat">Heat</option>
-            <option value="off" selected>Off</option>
-          </select>
-        </div>
-      </div>
+      <fieldset class="mb-4 pb-3 border-bottom">
+        <legend class="h4 mb-3">Air Conditioner Control</legend>
+        <label for="acMode" class="form-label">Mode</label>
+        <select id="acMode" name="mode" class="form-select w-auto">
+          <option value="cool">Cool</option>
+          <option value="heat">Heat</option>
+          <option value="off" selected>Off</option>
+        </select>
+      </fieldset>
 
       <!-- Turn Off All -->
       <div class="text-center mt-4">
-        <button id="turnOffAllBtn" class="btn btn-outline-danger btn-lg px-4">
+        <button
+                id="turnOffAllBtn"
+                class="btn btn-outline-danger btn-lg px-4"
+                type="button"
+                aria-label="Turn off all devices"
+        >
           Turn Off All Devices
         </button>
       </div>
     </section>
 
-  </div>
-  <div >
-    <section>
-      <svg width="730" height="615" viewBox="0 0 730 615" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <section class="flex-grow-1" style="max-width: 800px;">
+      <svg width="100%" height="auto" viewBox="0 0 730 615" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="room">
           <g id="undraw_relaxed-reading_wfkr 1" clip-path="url(#clip0_1_119)">
             <g id="Group 38">
@@ -197,7 +217,7 @@
         </defs>
       </svg>
     </section>
-  </div>
+
 </div>
 
 <!-- Bootstrap 5 JS Bundle (includes Popper) -->
